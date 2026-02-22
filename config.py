@@ -8,7 +8,7 @@ SAVE_DIR = './model'
 MODEL_PRE = 'CASIA_B512_'
 
 
-CASIA_DATA_DIR = 'C:\\Users\\han\\Desktop\\CASIA'
-LFW_DATA_DIR = 'C:\\Users\\han\\Desktop\\lfw'
+CASIA_DATA_DIR = 'C:\\Users\\lihan\\Desktop\\CASIA'
+LFW_DATA_DIR = 'C:\\Users\\lihan\\Desktop\\lfw'
 
 GPU = 0
