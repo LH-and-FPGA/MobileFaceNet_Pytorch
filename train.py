@@ -4,7 +4,7 @@ from torch import nn
 from torch.nn import DataParallel
 from datetime import datetime
 from config import BATCH_SIZE, SAVE_FREQ, RESUME, SAVE_DIR, TEST_FREQ, TOTAL_EPOCH, MODEL_PRE, GPU
-from config import CASIA_DATA_DIR, LFW_DATA_DIR
+from config import CASIA_DATA_DIR, LFW_DATA_DIR, MODEL_SIZE
 from core import model
 from core.utils import init_log
 from dataloader.CASIA_Face_loader import CASIA_Face
@@ -54,8 +54,12 @@ if __name__ == '__main__':
                                              shuffle=False, num_workers=8, pin_memory=True, drop_last=False)
 
     # define model
-    net = model.MobileFacenet()
-    ArcMargin = model.ArcMarginProduct(128, trainset.class_nums)
+    if MODEL_SIZE == 'small':
+        net = model.MobileFacenet(model.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
+    else:
+        net = model.MobileFacenet()
+    embedding_size = 128
+    ArcMargin = model.ArcMarginProduct(embedding_size, trainset.class_nums)
 
     if RESUME:
         ckpt = torch.load(RESUME)

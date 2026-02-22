@@ -63,6 +63,15 @@ Mobilefacenet_bottleneck_setting = [
     [2, 128, 2, 1]
 ]
 
+Mobilefacenet_small_setting = [
+    # t, c , n ,s
+    [2, 16, 5, 2],
+    [4, 32, 1, 2],
+    [2, 32, 5, 1],
+    [4, 48, 1, 2],
+    [2, 96, 2, 1]
+]
+
 Mobilenetv2_bottleneck_setting = [
     # t, c, n, s
     [1, 16, 1, 1],
@@ -75,22 +84,24 @@ Mobilenetv2_bottleneck_setting = [
 ]
 
 class MobileFacenet(nn.Module):
-    def __init__(self, bottleneck_setting=Mobilefacenet_bottleneck_setting):
+    def __init__(self, bottleneck_setting=Mobilefacenet_bottleneck_setting,
+                 inplanes=64, mid_channels=512, embedding_size=128):
         super(MobileFacenet, self).__init__()
 
-        self.conv1 = ConvBlock(3, 64, 3, 2, 1)
+        self.conv1 = ConvBlock(3, inplanes, 3, 2, 1)
 
-        self.dw_conv1 = ConvBlock(64, 64, 3, 1, 1, dw=True)
+        self.dw_conv1 = ConvBlock(inplanes, inplanes, 3, 1, 1, dw=True)
 
-        self.inplanes = 64
+        self.inplanes = inplanes
         block = Bottleneck
         self.blocks = self._make_layer(block, bottleneck_setting)
 
-        self.conv2 = ConvBlock(128, 512, 1, 1, 0)
+        last_channel = bottleneck_setting[-1][1]
+        self.conv2 = ConvBlock(last_channel, mid_channels, 1, 1, 0)
 
-        self.linear7 = ConvBlock(512, 512, (7, 6), 1, 0, dw=True, linear=True)
+        self.linear7 = ConvBlock(mid_channels, mid_channels, (7, 6), 1, 0, dw=True, linear=True)
 
-        self.linear1 = ConvBlock(512, 128, 1, 1, 0, linear=True)
+        self.linear1 = ConvBlock(mid_channels, embedding_size, 1, 1, 0, linear=True)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -161,9 +172,14 @@ class ArcMarginProduct(nn.Module):
 
 if __name__ == "__main__":
     input = Variable(torch.FloatTensor(2, 3, 112, 96))
+
     net = MobileFacenet()
     total = sum(p.numel() for p in net.parameters())
-    print(f"Total parameters: {total:,}")
-    # print(net)
-    x = net(input)
+    print(f"Original  parameters: {total:,}")
+
+    net_small = MobileFacenet(Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
+    total_small = sum(p.numel() for p in net_small.parameters())
+    print(f"Small     parameters: {total_small:,}")
+
+    x = net_small(input)
     print(x.shape)

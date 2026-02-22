@@ -12,3 +12,6 @@ CASIA_DATA_DIR = 'C:\\Users\\lihan\\Desktop\\CASIA'
 LFW_DATA_DIR = 'C:\\Users\\lihan\\Desktop\\lfw'
 
 GPU = 0
+
+# Model size: 'original' or 'small'
+MODEL_SIZE = 'small'
