@@ -1,0 +1,3 @@
+20260222-20:08:43 Teacher loaded from: ./model-2-22-1350/best/068.ckpt
+20260222-20:08:43 Student initialized from: ./model/CASIA_B512_v2_20260222_160714/051.ckpt
+20260222-20:08:44 Train Epoch: 1/70 ...
