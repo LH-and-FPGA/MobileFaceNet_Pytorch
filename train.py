@@ -12,6 +12,7 @@ from dataloader.LFW_loader import LFW
 from torch.optim import lr_scheduler
 import torch.optim as optim
 import time
+from tqdm import tqdm
 from lfw_eval import parseList, evaluation_10_fold
 import numpy as np
 import scipy.io
@@ -42,14 +43,14 @@ _print = logging.info
 # define trainloader and testloader
 trainset = CASIA_Face(root=CASIA_DATA_DIR)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=BATCH_SIZE,
-                                          shuffle=True, num_workers=8, drop_last=False)
+                                          shuffle=True, num_workers=0, drop_last=False)
 
 # nl: left_image_path
 # nr: right_image_path
 nl, nr, folds, flags = parseList(root=LFW_DATA_DIR)
 testdataset = LFW(nl, nr)
 testloader = torch.utils.data.DataLoader(testdataset, batch_size=32,
-                                         shuffle=False, num_workers=8, drop_last=False)
+                                         shuffle=False, num_workers=0, drop_last=False)
 
 # define model
 net = model.MobileFacenet()
@@ -93,7 +94,6 @@ criterion = torch.nn.CrossEntropyLoss()
 best_acc = 0.0
 best_epoch = 0
 for epoch in range(start_epoch, TOTAL_EPOCH+1):
-    exp_lr_scheduler.step()
     # train model
     _print('Train Epoch: {}/{} ...'.format(epoch, TOTAL_EPOCH))
     net.train()
@@ -101,7 +101,8 @@ for epoch in range(start_epoch, TOTAL_EPOCH+1):
     train_total_loss = 0.0
     total = 0
     since = time.time()
-    for data in trainloader:
+    pbar = tqdm(trainloader, desc='  batch', ncols=100, leave=False)
+    for data in pbar:
         img, label = data[0].cuda(), data[1].cuda()
         batch_size = img.size(0)
         optimizer_ft.zero_grad()
@@ -115,7 +116,9 @@ for epoch in range(start_epoch, TOTAL_EPOCH+1):
 
         train_total_loss += total_loss.item() * batch_size
         total += batch_size
+        pbar.set_postfix({'loss': '{:.4f}'.format(total_loss.item())})
 
+    exp_lr_scheduler.step()
     train_total_loss = train_total_loss / total
     time_elapsed = time.time() - since
     loss_msg = '    total_loss: {:.4f} time: {:.0f}m {:.0f}s'\

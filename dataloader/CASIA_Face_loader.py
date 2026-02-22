@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.misc
+from PIL import Image
 import os
 import torch
 
@@ -24,7 +24,7 @@ class CASIA_Face(object):
     def __getitem__(self, index):
         img_path = self.image_list[index]
         target = self.label_list[index]
-        img = scipy.misc.imread(img_path)
+        img = np.array(Image.open(img_path))
 
         if len(img.shape) == 2:
             img = np.stack([img] * 3, 2)
