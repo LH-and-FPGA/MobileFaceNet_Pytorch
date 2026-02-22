@@ -56,10 +56,10 @@ class ConvBlock(nn.Module):
 
 Mobilefacenet_bottleneck_setting = [
     # t, c , n ,s
-    [2, 64, 5, 2],
-    [4, 128, 1, 2],
-    [2, 128, 6, 1],
-    [4, 128, 1, 2],
+    [2, 16, 5, 2],
+    [4, 48, 1, 2],
+    [2, 48, 6, 1],
+    [4, 64, 1, 2],
     [2, 128, 2, 1]
 ]
 
@@ -162,6 +162,8 @@ class ArcMarginProduct(nn.Module):
 if __name__ == "__main__":
     input = Variable(torch.FloatTensor(2, 3, 112, 96))
     net = MobileFacenet()
-    print(net)
+    total = sum(p.numel() for p in net.parameters())
+    print(f"Total parameters: {total:,}")
+    # print(net)
     x = net(input)
     print(x.shape)
