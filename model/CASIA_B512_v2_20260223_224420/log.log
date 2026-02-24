@@ -1,0 +1,302 @@
+20260223-22:44:20 ============================================================
+20260223-22:44:20 MODEL_FILE: model_lh  MODEL_SIZE: small
+20260223-22:44:20 Architecture:
+MobileFacenet(
+  (conv1): ConvBlock(
+    (conv): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=32)
+  )
+  (dw_conv1): ConvBlock(
+    (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=32)
+  )
+  (blocks): Sequential(
+    (0): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (2): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (3): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (4): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (5): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (6): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (7): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (8): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (9): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (10): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (11): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=128)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=128)
+        (6): Conv2d(128, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (12): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=96)
+        (3): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+        (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=96)
+        (6): Conv2d(96, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (13): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=192)
+        (3): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+        (4): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=192)
+        (6): Conv2d(192, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (conv2): ConvBlock(
+    (conv): Conv2d(96, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=256)
+  )
+  (linear7): AdaptiveAvgPool2d(output_size=1)
+  (linear1): ConvBlock(
+    (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+)
+20260223-22:44:20 Backbone total params:     167,264
+20260223-22:44:20 Backbone trainable params: 167,264
+20260223-22:44:20 ArcMargin weight params:   1,353,216
+20260223-22:44:20 Optimizer LR: 0.1  Milestones: [36, 52, 58]
+20260223-22:44:20 Batch size: 512  Total epochs: 70
+20260223-22:44:20 ============================================================
+20260223-22:44:21 Train Epoch: 1/70 ...
+20260223-22:45:05     total_loss: 24.1387 time: 0m 44s
+20260223-22:45:05 Test Epoch: 1 ...
+20260223-22:45:11     ave: 81.2167
+20260223-22:45:11 Saving checkpoint: 1
+20260223-22:45:11 Train Epoch: 2/70 ...
+20260223-22:45:55     total_loss: 16.1068 time: 0m 44s
+20260223-22:45:55 Test Epoch: 2 ...
+20260223-22:46:00     ave: 84.0500
+20260223-22:46:00 Saving checkpoint: 2
+20260223-22:46:00 Train Epoch: 3/70 ...
+20260223-22:46:48     total_loss: 15.0686 time: 0m 47s
+20260223-22:46:48 Test Epoch: 3 ...
+20260223-22:46:53     ave: 85.5833
+20260223-22:46:53 Saving checkpoint: 3
+20260223-22:46:53 Train Epoch: 4/70 ...
+20260223-22:47:38     total_loss: 14.9506 time: 0m 45s
+20260223-22:47:38 Test Epoch: 4 ...
+20260223-22:47:44     ave: 83.2500
+20260223-22:47:44 Saving checkpoint: 4
+20260223-22:47:44 Train Epoch: 5/70 ...
+20260223-22:48:28     total_loss: 14.8724 time: 0m 44s
+20260223-22:48:28 Test Epoch: 5 ...
+20260223-22:48:33     ave: 82.5667
+20260223-22:48:33 Saving checkpoint: 5
+20260223-22:48:33 Train Epoch: 6/70 ...
+20260223-22:49:20     total_loss: 14.8160 time: 0m 46s
+20260223-22:49:20 Test Epoch: 6 ...
+20260223-22:49:23     ave: 83.9167
+20260223-22:49:23 Saving checkpoint: 6
+20260223-22:49:23 Train Epoch: 7/70 ...
+20260223-22:50:09     total_loss: 14.7655 time: 0m 46s
+20260223-22:50:09 Test Epoch: 7 ...
+20260223-22:50:15     ave: 82.4333
+20260223-22:50:15 Saving checkpoint: 7
+20260223-22:50:15 Train Epoch: 8/70 ...
+20260223-22:50:58     total_loss: 14.7301 time: 0m 43s
+20260223-22:50:58 Test Epoch: 8 ...
+20260223-22:51:04     ave: 82.4500
+20260223-22:51:04 Saving checkpoint: 8
+20260223-22:51:04 Train Epoch: 9/70 ...
+20260223-22:51:49     total_loss: 14.7016 time: 0m 45s
+20260223-22:51:49 Test Epoch: 9 ...
+20260223-22:51:55     ave: 84.4667
+20260223-22:51:55 Saving checkpoint: 9
+20260223-22:51:55 Train Epoch: 10/70 ...
+20260223-22:52:42     total_loss: 14.6804 time: 0m 47s
+20260223-22:52:42 Test Epoch: 10 ...
+20260223-22:52:47     ave: 84.3500
+20260223-22:52:47 Saving checkpoint: 10
+20260223-22:52:47 Train Epoch: 11/70 ...
+20260223-22:53:32     total_loss: 14.6605 time: 0m 44s
+20260223-22:53:32 Test Epoch: 11 ...
+20260223-22:53:38     ave: 81.1000
+20260223-22:53:38 Saving checkpoint: 11
+20260223-22:53:38 Train Epoch: 12/70 ...
+20260223-22:54:22     total_loss: 14.6437 time: 0m 44s
+20260223-22:54:22 Test Epoch: 12 ...
+20260223-22:54:27     ave: 84.5167
+20260223-22:54:27 Saving checkpoint: 12
+20260223-22:54:27 Train Epoch: 13/70 ...
+20260223-22:55:14     total_loss: 14.6261 time: 0m 47s
+20260223-22:55:14 Test Epoch: 13 ...
+20260223-22:55:20     ave: 85.6500
+20260223-22:55:20 Saving checkpoint: 13
+20260223-22:55:17 Train Epoch: 14/70 ...
+20260223-22:56:02     total_loss: 14.6150 time: 0m 45s
+20260223-22:56:02 Test Epoch: 14 ...
+20260223-22:56:08     ave: 84.5000
+20260223-22:56:08 Saving checkpoint: 14
+20260223-22:56:08 Train Epoch: 15/70 ...
+20260223-22:56:51     total_loss: 14.6026 time: 0m 43s
+20260223-22:56:51 Test Epoch: 15 ...
+20260223-22:56:57     ave: 84.9000
+20260223-22:56:57 Saving checkpoint: 15
+20260223-22:56:57 Train Epoch: 16/70 ...
+20260223-22:57:44     total_loss: 14.5908 time: 0m 48s
+20260223-22:57:44 Test Epoch: 16 ...
+20260223-22:57:48     ave: 85.0167
+20260223-22:57:48 Saving checkpoint: 16
+20260223-22:57:48 Train Epoch: 17/70 ...
+20260223-22:58:37     total_loss: 14.5807 time: 0m 49s
+20260223-22:58:37 Test Epoch: 17 ...
+20260223-22:58:42     ave: 84.7000
+20260223-22:58:42 Saving checkpoint: 17
+20260223-22:58:42 Train Epoch: 18/70 ...
+20260223-22:59:27     total_loss: 14.5722 time: 0m 45s
+20260223-22:59:27 Test Epoch: 18 ...
+20260223-22:59:33     ave: 83.8167
+20260223-22:59:33 Saving checkpoint: 18
+20260223-22:59:33 Train Epoch: 19/70 ...
+20260223-23:00:17     total_loss: 14.5649 time: 0m 44s
+20260223-23:00:17 Test Epoch: 19 ...
+20260223-23:00:23     ave: 84.8167
+20260223-23:00:23 Saving checkpoint: 19
+20260223-23:00:23 Train Epoch: 20/70 ...
+20260223-23:01:08     total_loss: 14.5581 time: 0m 45s
+20260223-23:01:08 Test Epoch: 20 ...
+20260223-23:01:14     ave: 86.2667
+20260223-23:01:14 Saving checkpoint: 20
+20260223-23:01:14 Train Epoch: 21/70 ...

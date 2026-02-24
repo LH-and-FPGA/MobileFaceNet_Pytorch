@@ -6,8 +6,9 @@ from torch import nn
 from torch.nn import DataParallel
 from datetime import datetime
 from config import BATCH_SIZE, SAVE_FREQ, RESUME, SAVE_DIR, TEST_FREQ, TOTAL_EPOCH, MODEL_PRE, GPU
-from config import CASIA_DATA_DIR, LFW_DATA_DIR
-from core import model
+from config import CASIA_DATA_DIR, LFW_DATA_DIR, MODEL_FILE, MODEL_SIZE
+import importlib
+from core import model as _orig_model  # teacher always uses original PReLU model
 from core.utils import init_log
 from dataloader.CASIA_Face_loader import CASIA_Face
 from dataloader.LFW_loader import LFW
@@ -71,11 +72,17 @@ if __name__ == '__main__':
                                              shuffle=False, num_workers=8, pin_memory=True, drop_last=False)
 
     # ---------- student ----------
-    student = model.MobileFacenet(model.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
-    ArcMargin = model.ArcMarginProduct(128, trainset.class_nums)
+    model_module = importlib.import_module(f'core.{MODEL_FILE}')
+    if MODEL_SIZE == 'tiny':
+        student = model_module.MobileFacenet()
+    elif MODEL_SIZE == 'small':
+        student = model_module.MobileFacenet(model_module.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
+    else:  # 'original'
+        student = model_module.MobileFacenet(model_module.Mobilefacenet_bottleneck_setting, inplanes=64, mid_channels=512)
+    ArcMargin = model_module.ArcMarginProduct(128, trainset.class_nums)
 
-    # ---------- teacher (frozen) ----------
-    teacher = model.MobileFacenet()
+    # ---------- teacher (frozen, always uses core.model original) ----------
+    teacher = _orig_model.MobileFacenet()
     ckpt = torch.load(TEACHER_CKPT)
     teacher.load_state_dict(ckpt['net_state_dict'])
     teacher.eval()
@@ -96,15 +103,17 @@ if __name__ == '__main__':
     for m in student.modules():
         if isinstance(m, nn.PReLU):
             ignored_params += list(map(id, m.parameters()))
-            prelu_params += m.parameters()
+            prelu_params += list(m.parameters())
     base_params = filter(lambda p: id(p) not in ignored_params, student.parameters())
 
-    optimizer_ft = optim.SGD([
+    optimizer_groups = [
         {'params': base_params, 'weight_decay': 4e-5},
         {'params': student.linear1.parameters(), 'weight_decay': 4e-4},
         {'params': ArcMargin.weight, 'weight_decay': 4e-4},
-        {'params': prelu_params, 'weight_decay': 0.0}
-    ], lr=0.01, momentum=0.9, nesterov=True)
+    ]
+    if prelu_params:
+        optimizer_groups.append({'params': prelu_params, 'weight_decay': 0.0})
+    optimizer_ft = optim.SGD(optimizer_groups, lr=0.01, momentum=0.9, nesterov=True)
 
     exp_lr_scheduler = lr_scheduler.MultiStepLR(optimizer_ft, milestones=[20, 40, 55], gamma=0.1)
 

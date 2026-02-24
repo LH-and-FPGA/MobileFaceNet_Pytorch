@@ -15,12 +15,12 @@ class Bottleneck(nn.Module):
             #pw
             nn.Conv2d(inp, inp * expansion, 1, 1, 0, bias=False),
             nn.BatchNorm2d(inp * expansion),
-            nn.ReLU(inplace=True),
+            nn.PReLU(inp * expansion),
 
             #dw
             nn.Conv2d(inp * expansion, inp * expansion, 3, stride, 1, groups=inp * expansion, bias=False),
             nn.BatchNorm2d(inp * expansion),
-            nn.ReLU(inplace=True),
+            nn.PReLU(inp * expansion),
 
             #pw-linear
             nn.Conv2d(inp * expansion, oup, 1, 1, 0, bias=False),
@@ -43,14 +43,14 @@ class ConvBlock(nn.Module):
             self.conv = nn.Conv2d(inp, oup, k, s, p, bias=False)
         self.bn = nn.BatchNorm2d(oup)
         if not linear:
-            self.relu = nn.ReLU(inplace=True)
+            self.prelu = nn.PReLU(oup)
     def forward(self, x):
         x = self.conv(x)
         x = self.bn(x)
         if self.linear:
             return x
         else:
-            return self.relu(x)
+            return self.prelu(x)
 
 Mobilefacenet_tiny_setting = [
     # t, c, n, s

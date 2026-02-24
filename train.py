@@ -4,8 +4,8 @@ from torch import nn
 from torch.nn import DataParallel
 from datetime import datetime
 from config import BATCH_SIZE, SAVE_FREQ, RESUME, SAVE_DIR, TEST_FREQ, TOTAL_EPOCH, MODEL_PRE, GPU
-from config import CASIA_DATA_DIR, LFW_DATA_DIR, MODEL_SIZE
-from core import model
+from config import CASIA_DATA_DIR, LFW_DATA_DIR, MODEL_FILE, MODEL_SIZE
+import importlib
 from core.utils import init_log
 from dataloader.CASIA_Face_loader import CASIA_Face
 from dataloader.LFW_loader import LFW
@@ -54,36 +54,53 @@ if __name__ == '__main__':
                                              shuffle=False, num_workers=8, pin_memory=True, drop_last=False)
 
     # define model
-    if MODEL_SIZE == 'small':
-        net = model.MobileFacenet(model.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
-    else:
-        net = model.MobileFacenet()
+    model_module = importlib.import_module(f'core.{MODEL_FILE}')
+    if MODEL_SIZE == 'tiny':
+        net = model_module.MobileFacenet()
+    elif MODEL_SIZE == 'small':
+        net = model_module.MobileFacenet(model_module.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
+    else:  # 'original'
+        net = model_module.MobileFacenet(model_module.Mobilefacenet_bottleneck_setting, inplanes=64, mid_channels=512)
     embedding_size = 128
-    ArcMargin = model.ArcMarginProduct(embedding_size, trainset.class_nums)
+    ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums)
 
     if RESUME:
         ckpt = torch.load(RESUME)
         net.load_state_dict(ckpt['net_state_dict'])
         start_epoch = ckpt['epoch'] + 1
 
+    # log model info
+    _print('=' * 60)
+    _print('MODEL_FILE: {}  MODEL_SIZE: {}'.format(MODEL_FILE, MODEL_SIZE))
+    _print('Architecture:\n' + str(net))
+    total_params     = sum(p.numel() for p in net.parameters())
+    trainable_params = sum(p.numel() for p in net.parameters() if p.requires_grad)
+    arc_params       = ArcMargin.weight.numel()
+    _print('Backbone total params:     {:,}'.format(total_params))
+    _print('Backbone trainable params: {:,}'.format(trainable_params))
+    _print('ArcMargin weight params:   {:,}'.format(arc_params))
+    _print('Optimizer LR: {}  Milestones: {}'.format(0.1, [36, 52, 58]))
+    _print('Batch size: {}  Total epochs: {}'.format(BATCH_SIZE, TOTAL_EPOCH))
+    _print('=' * 60)
 
     # define optimizers
     ignored_params = list(map(id, net.linear1.parameters()))
     ignored_params += list(map(id, ArcMargin.weight))
-    prelu_params_id = []
     prelu_params = []
     for m in net.modules():
         if isinstance(m, nn.PReLU):
             ignored_params += list(map(id, m.parameters()))
-            prelu_params += m.parameters()
+            prelu_params += list(m.parameters())
     base_params = filter(lambda p: id(p) not in ignored_params, net.parameters())
 
-    optimizer_ft = optim.SGD([
+    optimizer_groups = [
         {'params': base_params, 'weight_decay': 4e-5},
         {'params': net.linear1.parameters(), 'weight_decay': 4e-4},
         {'params': ArcMargin.weight, 'weight_decay': 4e-4},
-        {'params': prelu_params, 'weight_decay': 0.0}
-    ], lr=0.1, momentum=0.9, nesterov=True)
+    ]
+    if prelu_params:
+        optimizer_groups.append({'params': prelu_params, 'weight_decay': 0.0})
+    optimizer_ft = optim.SGD(optimizer_groups, lr=0.1, momentum=0.9, nesterov=True)
 
     exp_lr_scheduler = lr_scheduler.MultiStepLR(optimizer_ft, milestones=[36, 52, 58], gamma=0.1)
 
