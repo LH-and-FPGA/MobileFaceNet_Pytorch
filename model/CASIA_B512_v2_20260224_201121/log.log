@@ -1,0 +1,494 @@
+20260224-20:11:21 ============================================================
+20260224-20:11:21 MODEL_FILE: model_1  MODEL_SIZE: small
+20260224-20:11:21 Architecture:
+MobileFacenet(
+  (conv1): ConvBlock(
+    (conv): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+  )
+  (dw_conv1): ConvBlock(
+    (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+  )
+  (blocks): Sequential(
+    (0): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (2): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (3): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (4): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (5): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (6): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (7): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (8): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False)
+        (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+        (6): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (conv2): ConvBlock(
+    (conv): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+  )
+  (linear7): ConvBlock(
+    (conv): Conv2d(256, 256, kernel_size=(7, 6), stride=(1, 1), groups=256, bias=False)
+    (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (linear1): ConvBlock(
+    (conv): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+)
+20260224-20:11:21 Backbone total params:     158,912
+20260224-20:11:21 Backbone trainable params: 158,912
+20260224-20:11:21 ArcMargin weight params:   676,608
+20260224-20:11:21 Optimizer LR: 0.1  Milestones: [36, 52, 58]
+20260224-20:11:21 Batch size: 512  Total epochs: 70
+20260224-20:11:21 ============================================================
+20260224-20:11:22 Train Epoch: 1/70 ...
+20260224-20:11:57     total_loss: 24.5193 time: 0m 35s
+20260224-20:11:57 Test Epoch: 1 ...
+20260224-20:12:02     ave: 82.2000
+20260224-20:12:02 Saving checkpoint: 1
+20260224-20:12:02 Train Epoch: 2/70 ...
+20260224-20:12:38     total_loss: 19.2384 time: 0m 36s
+20260224-20:12:38 Test Epoch: 2 ...
+20260224-20:12:42     ave: 87.8000
+20260224-20:12:42 Saving checkpoint: 2
+20260224-20:12:42 Train Epoch: 3/70 ...
+20260224-20:13:18     total_loss: 16.2406 time: 0m 36s
+20260224-20:13:18 Test Epoch: 3 ...
+20260224-20:13:23     ave: 92.8333
+20260224-20:13:23 Saving checkpoint: 3
+20260224-20:13:23 Train Epoch: 4/70 ...
+20260224-20:13:56     total_loss: 14.8540 time: 0m 33s
+20260224-20:13:56 Test Epoch: 4 ...
+20260224-20:14:01     ave: 94.5833
+20260224-20:14:01 Saving checkpoint: 4
+20260224-20:14:01 Train Epoch: 5/70 ...
+20260224-20:14:37     total_loss: 14.0184 time: 0m 36s
+20260224-20:14:37 Test Epoch: 5 ...
+20260224-20:14:41     ave: 94.8333
+20260224-20:14:41 Saving checkpoint: 5
+20260224-20:14:42 Train Epoch: 6/70 ...
+20260224-20:15:18     total_loss: 13.4270 time: 0m 37s
+20260224-20:15:18 Test Epoch: 6 ...
+20260224-20:15:23     ave: 95.9333
+20260224-20:15:23 Saving checkpoint: 6
+20260224-20:15:23 Train Epoch: 7/70 ...
+20260224-20:15:57     total_loss: 12.9890 time: 0m 34s
+20260224-20:15:57 Test Epoch: 7 ...
+20260224-20:16:01     ave: 95.8167
+20260224-20:16:01 Saving checkpoint: 7
+20260224-20:16:01 Train Epoch: 8/70 ...
+20260224-20:16:38     total_loss: 12.6602 time: 0m 37s
+20260224-20:16:38 Test Epoch: 8 ...
+20260224-20:16:42     ave: 96.3833
+20260224-20:16:42 Saving checkpoint: 8
+20260224-20:16:42 Train Epoch: 9/70 ...
+20260224-20:17:19     total_loss: 12.4124 time: 0m 37s
+20260224-20:17:19 Test Epoch: 9 ...
+20260224-20:17:21     ave: 96.1667
+20260224-20:17:21 Saving checkpoint: 9
+20260224-20:17:21 Train Epoch: 10/70 ...
+20260224-20:17:58     total_loss: 12.2203 time: 0m 37s
+20260224-20:17:58 Test Epoch: 10 ...
+20260224-20:18:02     ave: 96.5833
+20260224-20:18:02 Saving checkpoint: 10
+20260224-20:18:02 Train Epoch: 11/70 ...
+20260224-20:18:39     total_loss: 12.0685 time: 0m 37s
+20260224-20:18:39 Test Epoch: 11 ...
+20260224-20:18:44     ave: 96.5667
+20260224-20:18:44 Saving checkpoint: 11
+20260224-20:18:44 Train Epoch: 12/70 ...
+20260224-20:19:21     total_loss: 11.9404 time: 0m 37s
+20260224-20:19:21 Test Epoch: 12 ...
+20260224-20:19:25     ave: 96.7667
+20260224-20:19:25 Saving checkpoint: 12
+20260224-20:19:25 Train Epoch: 13/70 ...
+20260224-20:20:00     total_loss: 11.8330 time: 0m 34s
+20260224-20:20:00 Test Epoch: 13 ...
+20260224-20:20:04     ave: 96.3833
+20260224-20:20:04 Saving checkpoint: 13
+20260224-20:20:04 Train Epoch: 14/70 ...
+20260224-20:20:38     total_loss: 11.7408 time: 0m 34s
+20260224-20:20:38 Test Epoch: 14 ...
+20260224-20:20:43     ave: 97.1167
+20260224-20:20:43 Saving checkpoint: 14
+20260224-20:20:43 Train Epoch: 15/70 ...
+20260224-20:21:19     total_loss: 11.6643 time: 0m 37s
+20260224-20:21:19 Test Epoch: 15 ...
+20260224-20:21:24     ave: 97.1500
+20260224-20:21:24 Saving checkpoint: 15
+20260224-20:21:24 Train Epoch: 16/70 ...
+20260224-20:22:01     total_loss: 11.5940 time: 0m 37s
+20260224-20:22:01 Test Epoch: 16 ...
+20260224-20:22:03     ave: 96.9833
+20260224-20:22:03 Saving checkpoint: 16
+20260224-20:22:03 Train Epoch: 17/70 ...
+20260224-20:22:40     total_loss: 11.5292 time: 0m 37s
+20260224-20:22:40 Test Epoch: 17 ...
+20260224-20:22:45     ave: 97.0667
+20260224-20:22:45 Saving checkpoint: 17
+20260224-20:22:45 Train Epoch: 18/70 ...
+20260224-20:23:20     total_loss: 11.4682 time: 0m 36s
+20260224-20:23:20 Test Epoch: 18 ...
+20260224-20:23:25     ave: 97.0000
+20260224-20:23:25 Saving checkpoint: 18
+20260224-20:23:25 Train Epoch: 19/70 ...
+20260224-20:24:02     total_loss: 11.4196 time: 0m 37s
+20260224-20:24:02 Test Epoch: 19 ...
+20260224-20:24:04     ave: 96.9333
+20260224-20:24:04 Saving checkpoint: 19
+20260224-20:24:04 Train Epoch: 20/70 ...
+20260224-20:24:41     total_loss: 11.3715 time: 0m 37s
+20260224-20:24:41 Test Epoch: 20 ...
+20260224-20:24:46     ave: 97.4000
+20260224-20:24:46 Saving checkpoint: 20
+20260224-20:24:46 Train Epoch: 21/70 ...
+20260224-20:25:22     total_loss: 11.3312 time: 0m 36s
+20260224-20:25:22 Test Epoch: 21 ...
+20260224-20:25:27     ave: 97.5000
+20260224-20:25:27 Saving checkpoint: 21
+20260224-20:25:27 Train Epoch: 22/70 ...
+20260224-20:26:03     total_loss: 11.2864 time: 0m 36s
+20260224-20:26:03 Test Epoch: 22 ...
+20260224-20:26:07     ave: 96.8667
+20260224-20:26:07 Saving checkpoint: 22
+20260224-20:26:07 Train Epoch: 23/70 ...
+20260224-20:26:45     total_loss: 11.2480 time: 0m 38s
+20260224-20:26:45 Test Epoch: 23 ...
+20260224-20:26:50     ave: 97.3000
+20260224-20:26:50 Saving checkpoint: 23
+20260224-20:26:50 Train Epoch: 24/70 ...
+20260224-20:27:26     total_loss: 11.2140 time: 0m 36s
+20260224-20:27:26 Test Epoch: 24 ...
+20260224-20:27:31     ave: 97.0167
+20260224-20:27:31 Saving checkpoint: 24
+20260224-20:27:31 Train Epoch: 25/70 ...
+20260224-20:28:05     total_loss: 11.1842 time: 0m 34s
+20260224-20:28:05 Test Epoch: 25 ...
+20260224-20:28:10     ave: 97.4500
+20260224-20:28:10 Saving checkpoint: 25
+20260224-20:28:10 Train Epoch: 26/70 ...
+20260224-20:28:46     total_loss: 11.1524 time: 0m 37s
+20260224-20:28:46 Test Epoch: 26 ...
+20260224-20:28:51     ave: 97.0833
+20260224-20:28:51 Saving checkpoint: 26
+20260224-20:28:51 Train Epoch: 27/70 ...
+20260224-20:29:27     total_loss: 11.1239 time: 0m 36s
+20260224-20:29:27 Test Epoch: 27 ...
+20260224-20:29:30     ave: 97.1167
+20260224-20:29:30 Saving checkpoint: 27
+20260224-20:29:30 Train Epoch: 28/70 ...
+20260224-20:30:06     total_loss: 11.0967 time: 0m 36s
+20260224-20:30:06 Test Epoch: 28 ...
+20260224-20:30:11     ave: 97.3167
+20260224-20:30:11 Saving checkpoint: 28
+20260224-20:30:11 Train Epoch: 29/70 ...
+20260224-20:30:48     total_loss: 11.0695 time: 0m 37s
+20260224-20:30:48 Test Epoch: 29 ...
+20260224-20:30:52     ave: 97.3500
+20260224-20:30:52 Saving checkpoint: 29
+20260224-20:30:52 Train Epoch: 30/70 ...
+20260224-20:31:28     total_loss: 11.0484 time: 0m 36s
+20260224-20:31:28 Test Epoch: 30 ...
+20260224-20:31:31     ave: 97.6167
+20260224-20:31:31 Saving checkpoint: 30
+20260224-20:31:31 Train Epoch: 31/70 ...
+20260224-20:32:07     total_loss: 11.0272 time: 0m 37s
+20260224-20:32:07 Test Epoch: 31 ...
+20260224-20:32:12     ave: 97.3500
+20260224-20:32:12 Saving checkpoint: 31
+20260224-20:32:12 Train Epoch: 32/70 ...
+20260224-20:32:48     total_loss: 11.0042 time: 0m 36s
+20260224-20:32:48 Test Epoch: 32 ...
+20260224-20:32:53     ave: 97.5667
+20260224-20:32:53 Saving checkpoint: 32
+20260224-20:32:53 Train Epoch: 33/70 ...
+20260224-20:33:29     total_loss: 10.9863 time: 0m 37s
+20260224-20:33:29 Test Epoch: 33 ...
+20260224-20:33:32     ave: 97.5000
+20260224-20:33:32 Saving checkpoint: 33
+20260224-20:33:32 Train Epoch: 34/70 ...
+20260224-20:34:08     total_loss: 10.9710 time: 0m 36s
+20260224-20:34:08 Test Epoch: 34 ...
+20260224-20:34:13     ave: 97.4167
+20260224-20:34:13 Saving checkpoint: 34
+20260224-20:34:13 Train Epoch: 35/70 ...
+20260224-20:34:49     total_loss: 10.9493 time: 0m 37s
+20260224-20:34:49 Test Epoch: 35 ...
+20260224-20:34:54     ave: 97.9833
+20260224-20:34:54 Saving checkpoint: 35
+20260224-20:34:54 Train Epoch: 36/70 ...
+20260224-20:35:28     total_loss: 10.9330 time: 0m 34s
+20260224-20:35:28 Test Epoch: 36 ...
+20260224-20:35:33     ave: 97.4333
+20260224-20:35:33 Saving checkpoint: 36
+20260224-20:35:33 Train Epoch: 37/70 ...
+20260224-20:36:09     total_loss: 9.7928 time: 0m 36s
+20260224-20:36:09 Test Epoch: 37 ...
+20260224-20:36:14     ave: 97.9333
+20260224-20:36:14 Saving checkpoint: 37
+20260224-20:36:14 Train Epoch: 38/70 ...
+20260224-20:36:51     total_loss: 9.4856 time: 0m 37s
+20260224-20:36:51 Test Epoch: 38 ...
+20260224-20:36:56     ave: 97.9833
+20260224-20:36:56 Saving checkpoint: 38
+20260224-20:36:56 Train Epoch: 39/70 ...
+20260224-20:37:31     total_loss: 9.4009 time: 0m 35s
+20260224-20:37:31 Test Epoch: 39 ...
+20260224-20:37:35     ave: 97.8500
+20260224-20:37:35 Saving checkpoint: 39
+20260224-20:37:35 Train Epoch: 40/70 ...
+20260224-20:38:12     total_loss: 9.3681 time: 0m 37s
+20260224-20:38:12 Test Epoch: 40 ...
+20260224-20:38:17     ave: 98.1333
+20260224-20:38:17 Saving checkpoint: 40
+20260224-20:38:17 Train Epoch: 41/70 ...
+20260224-20:38:53     total_loss: 9.3577 time: 0m 36s
+20260224-20:38:53 Test Epoch: 41 ...
+20260224-20:38:56     ave: 98.0833
+20260224-20:38:56 Saving checkpoint: 41
+20260224-20:38:56 Train Epoch: 42/70 ...
+20260224-20:39:32     total_loss: 9.3568 time: 0m 37s
+20260224-20:39:32 Test Epoch: 42 ...
+20260224-20:39:37     ave: 98.0833
+20260224-20:39:37 Saving checkpoint: 42
+20260224-20:39:37 Train Epoch: 43/70 ...
+20260224-20:40:13     total_loss: 9.3603 time: 0m 37s
+20260224-20:40:13 Test Epoch: 43 ...
+20260224-20:40:18     ave: 98.1000
+20260224-20:40:18 Saving checkpoint: 43
+20260224-20:40:18 Train Epoch: 44/70 ...
+20260224-20:40:55     total_loss: 9.3649 time: 0m 37s
+20260224-20:40:55 Test Epoch: 44 ...
+20260224-20:40:57     ave: 98.0333
+20260224-20:40:57 Saving checkpoint: 44
+20260224-20:40:57 Train Epoch: 45/70 ...
+20260224-20:41:33     total_loss: 9.3752 time: 0m 36s
+20260224-20:41:33 Test Epoch: 45 ...
+20260224-20:41:38     ave: 98.1167
+20260224-20:41:38 Saving checkpoint: 45
+20260224-20:41:38 Train Epoch: 46/70 ...
+20260224-20:42:14     total_loss: 9.3833 time: 0m 36s
+20260224-20:42:14 Test Epoch: 46 ...
+20260224-20:42:19     ave: 98.2000
+20260224-20:42:19 Saving checkpoint: 46
+20260224-20:42:19 Train Epoch: 47/70 ...
+20260224-20:42:55     total_loss: 9.3917 time: 0m 36s
+20260224-20:42:55 Test Epoch: 47 ...
+20260224-20:42:57     ave: 97.9167
+20260224-20:42:57 Saving checkpoint: 47
+20260224-20:42:57 Train Epoch: 48/70 ...
+20260224-20:43:34     total_loss: 9.4004 time: 0m 36s
+20260224-20:43:34 Test Epoch: 48 ...
+20260224-20:43:38     ave: 98.1000
+20260224-20:43:38 Saving checkpoint: 48
+20260224-20:43:38 Train Epoch: 49/70 ...
+20260224-20:44:14     total_loss: 9.4122 time: 0m 36s
+20260224-20:44:14 Test Epoch: 49 ...
+20260224-20:44:19     ave: 97.9833
+20260224-20:44:19 Saving checkpoint: 49
+20260224-20:44:19 Train Epoch: 50/70 ...
+20260224-20:44:53     total_loss: 9.4213 time: 0m 34s
+20260224-20:44:53 Test Epoch: 50 ...
+20260224-20:44:57     ave: 98.1000
+20260224-20:44:57 Saving checkpoint: 50
+20260224-20:44:57 Train Epoch: 51/70 ...
+20260224-20:45:36     total_loss: 9.4288 time: 0m 39s
+20260224-20:45:36 Test Epoch: 51 ...
+20260224-20:45:37     ave: 97.8333
+20260224-20:45:37 Saving checkpoint: 51
+20260224-20:45:37 Train Epoch: 52/70 ...
+20260224-20:46:14     total_loss: 9.4370 time: 0m 36s
+20260224-20:46:14 Test Epoch: 52 ...
+20260224-20:46:18     ave: 98.0333
+20260224-20:46:18 Saving checkpoint: 52
+20260224-20:46:18 Train Epoch: 53/70 ...
+20260224-20:46:55     total_loss: 9.1075 time: 0m 36s
+20260224-20:46:55 Test Epoch: 53 ...
+20260224-20:46:59     ave: 98.1333
+20260224-20:46:59 Saving checkpoint: 53
+20260224-20:46:59 Train Epoch: 54/70 ...
+20260224-20:47:36     total_loss: 9.0774 time: 0m 36s
+20260224-20:47:36 Test Epoch: 54 ...
+20260224-20:47:38     ave: 98.2000
+20260224-20:47:38 Saving checkpoint: 54
+20260224-20:47:38 Train Epoch: 55/70 ...
+20260224-20:48:14     total_loss: 9.0677 time: 0m 37s
+20260224-20:48:14 Test Epoch: 55 ...
+20260224-20:48:19     ave: 98.0833
+20260224-20:48:19 Saving checkpoint: 55
+20260224-20:48:19 Train Epoch: 56/70 ...
+20260224-20:48:56     total_loss: 9.0607 time: 0m 37s
+20260224-20:48:56 Test Epoch: 56 ...
+20260224-20:49:00     ave: 98.1333
+20260224-20:49:00 Saving checkpoint: 56
+20260224-20:49:00 Train Epoch: 57/70 ...
+20260224-20:49:34     total_loss: 9.0557 time: 0m 34s
+20260224-20:49:34 Test Epoch: 57 ...
+20260224-20:49:38     ave: 98.0333
+20260224-20:49:38 Saving checkpoint: 57
+20260224-20:49:38 Train Epoch: 58/70 ...
+20260224-20:50:15     total_loss: 9.0530 time: 0m 36s
+20260224-20:50:15 Test Epoch: 58 ...
+20260224-20:50:19     ave: 98.1000
+20260224-20:50:19 Saving checkpoint: 58
+20260224-20:50:19 Train Epoch: 59/70 ...
+20260224-20:50:56     total_loss: 9.0071 time: 0m 36s
+20260224-20:50:56 Test Epoch: 59 ...
+20260224-20:51:00     ave: 98.1500
+20260224-20:51:00 Saving checkpoint: 59
+20260224-20:51:00 Train Epoch: 60/70 ...
+20260224-20:51:34     total_loss: 9.0045 time: 0m 34s
+20260224-20:51:34 Test Epoch: 60 ...
+20260224-20:51:38     ave: 98.1833
+20260224-20:51:38 Saving checkpoint: 60
+20260224-20:51:38 Train Epoch: 61/70 ...
+20260224-20:52:15     total_loss: 9.0033 time: 0m 37s
+20260224-20:52:15 Test Epoch: 61 ...
+20260224-20:52:20     ave: 98.0667
+20260224-20:52:20 Saving checkpoint: 61
+20260224-20:52:20 Train Epoch: 62/70 ...
+20260224-20:52:57     total_loss: 9.0021 time: 0m 37s
+20260224-20:52:57 Test Epoch: 62 ...
+20260224-20:53:01     ave: 98.1000
+20260224-20:53:01 Saving checkpoint: 62
+20260224-20:53:01 Train Epoch: 63/70 ...
+20260224-20:53:35     total_loss: 9.0038 time: 0m 34s
+20260224-20:53:35 Test Epoch: 63 ...
+20260224-20:53:40     ave: 98.1167
+20260224-20:53:40 Saving checkpoint: 63
+20260224-20:53:40 Train Epoch: 64/70 ...
+20260224-20:54:16     total_loss: 9.0033 time: 0m 36s
+20260224-20:54:16 Test Epoch: 64 ...
+20260224-20:54:21     ave: 98.1000
+20260224-20:54:21 Saving checkpoint: 64
+20260224-20:54:21 Train Epoch: 65/70 ...
+20260224-20:54:57     total_loss: 9.0018 time: 0m 36s
+20260224-20:54:57 Test Epoch: 65 ...
+20260224-20:55:02     ave: 98.0667
+20260224-20:55:02 Saving checkpoint: 65
+20260224-20:55:02 Train Epoch: 66/70 ...
+20260224-20:55:35     total_loss: 9.0014 time: 0m 34s
+20260224-20:55:35 Test Epoch: 66 ...
+20260224-20:55:40     ave: 98.1833
+20260224-20:55:40 Saving checkpoint: 66
+20260224-20:55:40 Train Epoch: 67/70 ...
+20260224-20:56:16     total_loss: 9.0031 time: 0m 36s
+20260224-20:56:16 Test Epoch: 67 ...
+20260224-20:56:21     ave: 98.1000
+20260224-20:56:21 Saving checkpoint: 67
+20260224-20:56:21 Train Epoch: 68/70 ...
+20260224-20:56:58     total_loss: 9.0025 time: 0m 37s
+20260224-20:56:58 Test Epoch: 68 ...
+20260224-20:57:02     ave: 98.1500
+20260224-20:57:02 Saving checkpoint: 68
+20260224-20:57:02 Train Epoch: 69/70 ...
+20260224-20:57:36     total_loss: 9.0006 time: 0m 34s
+20260224-20:57:36 Test Epoch: 69 ...
+20260224-20:57:41     ave: 98.0500
+20260224-20:57:41 Saving checkpoint: 69
+20260224-20:57:41 Train Epoch: 70/70 ...
+20260224-20:58:17     total_loss: 8.9999 time: 0m 36s
+20260224-20:58:17 Test Epoch: 70 ...
+20260224-20:58:21     ave: 98.1833
+20260224-20:58:21 Saving checkpoint: 70

@@ -57,7 +57,7 @@ class ConvBlock(nn.Module):
             return self.relu(x)
 
 
-Mobilefacenet_pynq_setting = [
+Mobilefacenet_small_setting = [
     # t, c,  n, s
     [2, 32,  3, 2],
     [2, 64,  1, 2],
@@ -68,7 +68,7 @@ Mobilefacenet_pynq_setting = [
 
 
 class MobileFacenet(nn.Module):
-    def __init__(self, bottleneck_setting=Mobilefacenet_pynq_setting,
+    def __init__(self, bottleneck_setting=Mobilefacenet_small_setting,
                  inplanes=32, mid_channels=128, embedding_size=64):
         super(MobileFacenet, self).__init__()
 

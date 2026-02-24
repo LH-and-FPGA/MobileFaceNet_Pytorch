@@ -14,7 +14,7 @@ LFW_DATA_DIR = '/home/han/data/lfw'
 GPU = 0
 
 # Model file: 'model' (original PReLU) or 'model_lh' (ReLU + GAP, FPGA-friendly)
-MODEL_FILE = 'model_lh'
+MODEL_FILE = 'model_1'
 
 # Model size:
 #   'tiny'     -- only for model_lh (default tiny setting, ~98k params)

@@ -61,7 +61,7 @@ if __name__ == '__main__':
         net = model_module.MobileFacenet(model_module.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
     else:  # 'original'
         net = model_module.MobileFacenet(model_module.Mobilefacenet_bottleneck_setting, inplanes=64, mid_channels=512)
-    embedding_size = 128
+    embedding_size = 64
     ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums)
 
     if RESUME:
