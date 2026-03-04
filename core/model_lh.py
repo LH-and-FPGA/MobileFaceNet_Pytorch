@@ -6,12 +6,28 @@ from torch.autograd import Variable
 import math
 from torch.nn import Parameter
 
+class SEModule(nn.Module):
+    """Squeeze-and-Excitation: 几乎不增加参数，显著提升特征质量"""
+    def __init__(self, channels, reduction=4):
+        super(SEModule, self).__init__()
+        self.fc = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
+            nn.Conv2d(channels, channels // reduction, 1, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(channels // reduction, channels, 1, bias=False),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        return x * self.fc(x)
+
+
 class Bottleneck(nn.Module):
-    def __init__(self, inp, oup, stride, expansion):
+    def __init__(self, inp, oup, stride, expansion, use_se=False):
         super(Bottleneck, self).__init__()
         self.connect = stride == 1 and inp == oup
         #
-        self.conv = nn.Sequential(
+        layers = [
             #pw
             nn.Conv2d(inp, inp * expansion, 1, 1, 0, bias=False),
             nn.BatchNorm2d(inp * expansion),
@@ -25,7 +41,10 @@ class Bottleneck(nn.Module):
             #pw-linear
             nn.Conv2d(inp * expansion, oup, 1, 1, 0, bias=False),
             nn.BatchNorm2d(oup),
-        )
+        ]
+        if use_se:
+            layers.insert(-2, SEModule(inp * expansion))
+        self.conv = nn.Sequential(*layers)
 
     def forward(self, x):
         if self.connect:
@@ -51,6 +70,14 @@ class ConvBlock(nn.Module):
             return x
         else:
             return self.prelu(x)
+
+Mobilefacenet_micro_setting = [
+    # t, c, n, s
+    [2, 12, 2, 2],
+    [2, 24, 2, 2],
+    [2, 32, 1, 2],
+    [2, 32, 2, 1],
+]
 
 Mobilefacenet_tiny_setting = [
     # t, c, n, s
@@ -91,7 +118,7 @@ Mobilenetv2_bottleneck_setting = [
 
 class MobileFacenet(nn.Module):
     def __init__(self, bottleneck_setting=Mobilefacenet_tiny_setting,
-                 inplanes=64, mid_channels=128, embedding_size=128):
+                 inplanes=64, mid_channels=128, embedding_size=128, use_se=False):
         super(MobileFacenet, self).__init__()
 
         self.conv1 = ConvBlock(3, inplanes, 3, 2, 1)
@@ -100,7 +127,7 @@ class MobileFacenet(nn.Module):
 
         self.inplanes = inplanes
         block = Bottleneck
-        self.blocks = self._make_layer(block, bottleneck_setting)
+        self.blocks = self._make_layer(block, bottleneck_setting, use_se)
 
         last_channel = bottleneck_setting[-1][1]
         self.conv2 = ConvBlock(last_channel, mid_channels, 1, 1, 0)
@@ -117,14 +144,14 @@ class MobileFacenet(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
-    def _make_layer(self, block, setting):
+    def _make_layer(self, block, setting, use_se=False):
         layers = []
         for t, c, n, s in setting:
             for i in range(n):
                 if i == 0:
-                    layers.append(block(self.inplanes, c, s, t))
+                    layers.append(block(self.inplanes, c, s, t, use_se=use_se))
                 else:
-                    layers.append(block(self.inplanes, c, 1, t))
+                    layers.append(block(self.inplanes, c, 1, t, use_se=use_se))
                 self.inplanes = c
 
         return nn.Sequential(*layers)
@@ -191,6 +218,10 @@ if __name__ == "__main__":
     total_tiny = sum(p.numel() for p in net_tiny.parameters())
     print(f"Tiny      parameters: {total_tiny:,}")
 
-    x = net_tiny(input)
-    print(f"Output shape: {x.shape}")
+    net_micro = MobileFacenet(Mobilefacenet_micro_setting, inplanes=32, mid_channels=64, embedding_size=64, use_se=True)
+    total_micro = sum(p.numel() for p in net_micro.parameters())
+    print(f"Micro(SE) parameters: {total_micro:,}")
+
+    x = net_micro(input)
+    print(f"Micro output shape: {x.shape}")
 
