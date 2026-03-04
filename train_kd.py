@@ -216,5 +216,10 @@ if __name__ == '__main__':
                 'epoch': epoch,
                 'net_state_dict': net_state_dict},
                 os.path.join(save_dir, '%03d.ckpt' % epoch))
+            # 保存完整模型（含架构），加载时无需重建模型代码
+            if multi_gpus:
+                torch.save(student.module, os.path.join(save_dir, '%03d.pth' % epoch))
+            else:
+                torch.save(student, os.path.join(save_dir, '%03d.pth' % epoch))
 
     print('finishing training')

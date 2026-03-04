@@ -90,12 +90,16 @@ def evaluation_10_fold(root='./result/pytorch_result.mat'):
 
 
 def getFeatureFromTorch(lfw_dir, feature_save_dir, resume=None, gpu=True):
-    net = model.MobileFacenet()
+    # .pth 文件为完整模型，直接加载；.ckpt 文件需要重建模型再加载 state_dict
+    if resume and resume.endswith('.pth'):
+        net = torch.load(resume, map_location='cuda' if gpu else 'cpu')
+    else:
+        net = model.MobileFacenet()
+        if resume:
+            ckpt = torch.load(resume)
+            net.load_state_dict(ckpt['net_state_dict'])
     if gpu:
         net = net.cuda()
-    if resume:
-        ckpt = torch.load(resume)
-        net.load_state_dict(ckpt['net_state_dict'])
     net.eval()
     nl, nr, flods, flags = parseList(lfw_dir)
     lfw_dataset = LFW(nl, nr)
