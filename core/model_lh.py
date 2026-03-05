@@ -73,10 +73,10 @@ class ConvBlock(nn.Module):
 
 Mobilefacenet_micro_setting = [
     # t, c, n, s
-    [2, 12, 2, 2],
-    [2, 24, 2, 2],
-    [2, 32, 1, 2],
-    [2, 32, 2, 1],
+    [2, 16, 2, 2],
+    [2, 32, 2, 2],
+    [2, 48, 1, 2],
+    [2, 48, 2, 1],
 ]
 
 Mobilefacenet_tiny_setting = [

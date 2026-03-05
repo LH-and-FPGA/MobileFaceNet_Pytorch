@@ -1,0 +1,530 @@
+20260305-02:14:06 ============================================================
+20260305-02:14:06 MODEL_FILE: model_lh  MODEL_SIZE: micro
+20260305-02:14:06 Architecture:
+MobileFacenet(
+  (conv1): ConvBlock(
+    (conv): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=32)
+  )
+  (dw_conv1): ConvBlock(
+    (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+    (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=32)
+  )
+  (blocks): Sequential(
+    (0): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(32, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(8, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (2): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=32)
+        (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=32, bias=False)
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=32)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(32, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(8, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (3): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (4): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=64)
+        (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=64)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(64, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (5): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=96)
+        (3): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+        (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=96)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(96, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (6): Bottleneck(
+      (conv): Sequential(
+        (0): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): PReLU(num_parameters=96)
+        (3): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+        (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): PReLU(num_parameters=96)
+        (6): SEModule(
+          (fc): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(96, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): Sigmoid()
+          )
+        )
+        (7): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (conv2): ConvBlock(
+    (conv): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (prelu): PReLU(num_parameters=96)
+  )
+  (linear7): AdaptiveAvgPool2d(output_size=1)
+  (linear1): ConvBlock(
+    (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+)
+20260305-02:14:06 Backbone total params:     69,376
+20260305-02:14:06 Backbone trainable params: 69,376
+20260305-02:14:06 ArcMargin weight params:   676,608
+20260305-02:14:06 Optimizer LR: 0.1  Milestones: [36, 52, 58]
+20260305-02:14:06 Batch size: 512  Total epochs: 70
+20260305-02:14:06 ============================================================
+20260305-02:14:07 Train Epoch: 1/70 ...
+20260305-02:14:40     total_loss: 13.0419 time: 0m 33s
+20260305-02:14:40 Test Epoch: 1 ...
+20260305-02:14:43     ave: 85.5167
+20260305-02:14:43 Saving checkpoint: 1
+20260305-02:14:43 Train Epoch: 2/70 ...
+20260305-02:15:16     total_loss: 9.8996 time: 0m 33s
+20260305-02:15:16 Test Epoch: 2 ...
+20260305-02:15:21     ave: 89.9833
+20260305-02:15:21 Saving checkpoint: 2
+20260305-02:15:21 Train Epoch: 3/70 ...
+20260305-02:15:52     total_loss: 9.1034 time: 0m 31s
+20260305-02:15:52 Test Epoch: 3 ...
+20260305-02:15:57     ave: 92.4333
+20260305-02:15:57 Saving checkpoint: 3
+20260305-02:15:57 Train Epoch: 4/70 ...
+20260305-02:16:29     total_loss: 8.6209 time: 0m 32s
+20260305-02:16:29 Test Epoch: 4 ...
+20260305-02:16:34     ave: 93.3000
+20260305-02:16:34 Saving checkpoint: 4
+20260305-02:16:35 Train Epoch: 5/70 ...
+20260305-02:17:06     total_loss: 8.2368 time: 0m 32s
+20260305-02:17:06 Test Epoch: 5 ...
+20260305-02:17:12     ave: 93.7167
+20260305-02:17:12 Saving checkpoint: 5
+20260305-02:17:12 Train Epoch: 6/70 ...
+20260305-02:17:43     total_loss: 7.9509 time: 0m 31s
+20260305-02:17:43 Test Epoch: 6 ...
+20260305-02:17:48     ave: 93.9000
+20260305-02:17:48 Saving checkpoint: 6
+20260305-02:17:48 Train Epoch: 7/70 ...
+20260305-02:18:20     total_loss: 7.7434 time: 0m 32s
+20260305-02:18:20 Test Epoch: 7 ...
+20260305-02:18:25     ave: 94.7333
+20260305-02:18:25 Saving checkpoint: 7
+20260305-02:18:25 Train Epoch: 8/70 ...
+20260305-02:18:56     total_loss: 7.5825 time: 0m 31s
+20260305-02:18:56 Test Epoch: 8 ...
+20260305-02:19:01     ave: 95.1833
+20260305-02:19:01 Saving checkpoint: 8
+20260305-02:19:01 Train Epoch: 9/70 ...
+20260305-02:19:33     total_loss: 7.4597 time: 0m 32s
+20260305-02:19:33 Test Epoch: 9 ...
+20260305-02:19:38     ave: 94.6000
+20260305-02:19:38 Saving checkpoint: 9
+20260305-02:19:38 Train Epoch: 10/70 ...
+20260305-02:20:09     total_loss: 7.3630 time: 0m 31s
+20260305-02:20:09 Test Epoch: 10 ...
+20260305-02:20:12     ave: 94.8000
+20260305-02:20:12 Saving checkpoint: 10
+20260305-02:20:12 Train Epoch: 11/70 ...
+20260305-02:20:44     total_loss: 7.2807 time: 0m 31s
+20260305-02:20:44 Test Epoch: 11 ...
+20260305-02:20:49     ave: 95.4167
+20260305-02:20:49 Saving checkpoint: 11
+20260305-02:20:49 Train Epoch: 12/70 ...
+20260305-02:21:22     total_loss: 7.2110 time: 0m 33s
+20260305-02:21:22 Test Epoch: 12 ...
+20260305-02:21:27     ave: 95.3333
+20260305-02:21:27 Saving checkpoint: 12
+20260305-02:21:27 Train Epoch: 13/70 ...
+20260305-02:21:58     total_loss: 7.1552 time: 0m 31s
+20260305-02:21:58 Test Epoch: 13 ...
+20260305-02:22:04     ave: 95.4667
+20260305-02:22:04 Saving checkpoint: 13
+20260305-02:22:04 Train Epoch: 14/70 ...
+20260305-02:22:34     total_loss: 7.1042 time: 0m 31s
+20260305-02:22:34 Test Epoch: 14 ...
+20260305-02:22:40     ave: 95.9333
+20260305-02:22:40 Saving checkpoint: 14
+20260305-02:22:40 Train Epoch: 15/70 ...
+20260305-02:23:09     total_loss: 7.0633 time: 0m 29s
+20260305-02:23:09 Test Epoch: 15 ...
+20260305-02:23:14     ave: 95.3833
+20260305-02:23:14 Saving checkpoint: 15
+20260305-02:23:14 Train Epoch: 16/70 ...
+20260305-02:23:46     total_loss: 7.0267 time: 0m 32s
+20260305-02:23:46 Test Epoch: 16 ...
+20260305-02:23:51     ave: 95.8500
+20260305-02:23:51 Saving checkpoint: 16
+20260305-02:23:51 Train Epoch: 17/70 ...
+20260305-02:24:24     total_loss: 6.9948 time: 0m 33s
+20260305-02:24:24 Test Epoch: 17 ...
+20260305-02:24:29     ave: 95.7333
+20260305-02:24:29 Saving checkpoint: 17
+20260305-02:24:29 Train Epoch: 18/70 ...
+20260305-02:25:02     total_loss: 6.9652 time: 0m 33s
+20260305-02:25:02 Test Epoch: 18 ...
+20260305-02:25:08     ave: 95.8167
+20260305-02:25:08 Saving checkpoint: 18
+20260305-02:25:08 Train Epoch: 19/70 ...
+20260305-02:25:40     total_loss: 6.9378 time: 0m 32s
+20260305-02:25:40 Test Epoch: 19 ...
+20260305-02:25:43     ave: 95.7667
+20260305-02:25:43 Saving checkpoint: 19
+20260305-02:25:43 Train Epoch: 20/70 ...
+20260305-02:26:15     total_loss: 6.9133 time: 0m 32s
+20260305-02:26:15 Test Epoch: 20 ...
+20260305-02:26:20     ave: 96.1333
+20260305-02:26:20 Saving checkpoint: 20
+20260305-02:26:20 Train Epoch: 21/70 ...
+20260305-02:26:53     total_loss: 6.8878 time: 0m 32s
+20260305-02:26:53 Test Epoch: 21 ...
+20260305-02:26:58     ave: 96.0500
+20260305-02:26:58 Saving checkpoint: 21
+20260305-02:26:58 Train Epoch: 22/70 ...
+20260305-02:27:30     total_loss: 6.8673 time: 0m 32s
+20260305-02:27:30 Test Epoch: 22 ...
+20260305-02:27:35     ave: 96.1667
+20260305-02:27:35 Saving checkpoint: 22
+20260305-02:27:35 Train Epoch: 23/70 ...
+20260305-02:28:07     total_loss: 6.8469 time: 0m 32s
+20260305-02:28:07 Test Epoch: 23 ...
+20260305-02:28:10     ave: 96.2667
+20260305-02:28:10 Saving checkpoint: 23
+20260305-02:28:10 Train Epoch: 24/70 ...
+20260305-02:28:42     total_loss: 6.8272 time: 0m 32s
+20260305-02:28:42 Test Epoch: 24 ...
+20260305-02:28:47     ave: 96.0000
+20260305-02:28:47 Saving checkpoint: 24
+20260305-02:28:47 Train Epoch: 25/70 ...
+20260305-02:29:19     total_loss: 6.8100 time: 0m 32s
+20260305-02:29:19 Test Epoch: 25 ...
+20260305-02:29:24     ave: 95.9000
+20260305-02:29:24 Saving checkpoint: 25
+20260305-02:29:24 Train Epoch: 26/70 ...
+20260305-02:29:56     total_loss: 6.7935 time: 0m 32s
+20260305-02:29:56 Test Epoch: 26 ...
+20260305-02:30:01     ave: 96.1833
+20260305-02:30:01 Saving checkpoint: 26
+20260305-02:30:01 Train Epoch: 27/70 ...
+20260305-02:30:33     total_loss: 6.7759 time: 0m 32s
+20260305-02:30:33 Test Epoch: 27 ...
+20260305-02:30:38     ave: 96.1333
+20260305-02:30:38 Saving checkpoint: 27
+20260305-02:30:38 Train Epoch: 28/70 ...
+20260305-02:31:09     total_loss: 6.7621 time: 0m 31s
+20260305-02:31:09 Test Epoch: 28 ...
+20260305-02:31:14     ave: 96.2333
+20260305-02:31:14 Saving checkpoint: 28
+20260305-02:31:14 Train Epoch: 29/70 ...
+20260305-02:31:45     total_loss: 6.7452 time: 0m 31s
+20260305-02:31:45 Test Epoch: 29 ...
+20260305-02:31:50     ave: 95.4167
+20260305-02:31:50 Saving checkpoint: 29
+20260305-02:31:50 Train Epoch: 30/70 ...
+20260305-02:32:22     total_loss: 6.7301 time: 0m 32s
+20260305-02:32:22 Test Epoch: 30 ...
+20260305-02:32:27     ave: 96.3167
+20260305-02:32:27 Saving checkpoint: 30
+20260305-02:32:27 Train Epoch: 31/70 ...
+20260305-02:32:58     total_loss: 6.7154 time: 0m 32s
+20260305-02:32:58 Test Epoch: 31 ...
+20260305-02:33:03     ave: 96.1333
+20260305-02:33:03 Saving checkpoint: 31
+20260305-02:33:03 Train Epoch: 32/70 ...
+20260305-02:33:35     total_loss: 6.7021 time: 0m 31s
+20260305-02:33:35 Test Epoch: 32 ...
+20260305-02:33:39     ave: 95.7333
+20260305-02:33:39 Saving checkpoint: 32
+20260305-02:33:39 Train Epoch: 33/70 ...
+20260305-02:34:11     total_loss: 6.6881 time: 0m 32s
+20260305-02:34:11 Test Epoch: 33 ...
+20260305-02:34:16     ave: 96.4167
+20260305-02:34:16 Saving checkpoint: 33
+20260305-02:34:16 Train Epoch: 34/70 ...
+20260305-02:34:48     total_loss: 6.6762 time: 0m 31s
+20260305-02:34:48 Test Epoch: 34 ...
+20260305-02:34:53     ave: 96.3000
+20260305-02:34:53 Saving checkpoint: 34
+20260305-02:34:53 Train Epoch: 35/70 ...
+20260305-02:35:24     total_loss: 6.6646 time: 0m 31s
+20260305-02:35:24 Test Epoch: 35 ...
+20260305-02:35:29     ave: 96.2000
+20260305-02:35:29 Saving checkpoint: 35
+20260305-02:35:29 Train Epoch: 36/70 ...
+20260305-02:36:01     total_loss: 6.6539 time: 0m 31s
+20260305-02:36:01 Test Epoch: 36 ...
+20260305-02:36:06     ave: 96.0833
+20260305-02:36:06 Saving checkpoint: 36
+20260305-02:36:06 Train Epoch: 37/70 ...
+20260305-02:36:38     total_loss: 6.0843 time: 0m 32s
+20260305-02:36:38 Test Epoch: 37 ...
+20260305-02:36:43     ave: 96.9167
+20260305-02:36:43 Saving checkpoint: 37
+20260305-02:36:43 Train Epoch: 38/70 ...
+20260305-02:37:14     total_loss: 5.9509 time: 0m 31s
+20260305-02:37:14 Test Epoch: 38 ...
+20260305-02:37:19     ave: 96.9500
+20260305-02:37:19 Saving checkpoint: 38
+20260305-02:37:19 Train Epoch: 39/70 ...
+20260305-02:37:50     total_loss: 5.9155 time: 0m 31s
+20260305-02:37:50 Test Epoch: 39 ...
+20260305-02:37:55     ave: 96.9333
+20260305-02:37:55 Saving checkpoint: 39
+20260305-02:37:55 Train Epoch: 40/70 ...
+20260305-02:38:26     total_loss: 5.9024 time: 0m 31s
+20260305-02:38:26 Test Epoch: 40 ...
+20260305-02:38:31     ave: 97.0667
+20260305-02:38:31 Saving checkpoint: 40
+20260305-02:38:31 Train Epoch: 41/70 ...
+20260305-02:39:03     total_loss: 5.8976 time: 0m 32s
+20260305-02:39:03 Test Epoch: 41 ...
+20260305-02:39:08     ave: 96.9667
+20260305-02:39:08 Saving checkpoint: 41
+20260305-02:39:08 Train Epoch: 42/70 ...
+20260305-02:39:40     total_loss: 5.8968 time: 0m 31s
+20260305-02:39:40 Test Epoch: 42 ...
+20260305-02:39:45     ave: 96.9167
+20260305-02:39:45 Saving checkpoint: 42
+20260305-02:39:45 Train Epoch: 43/70 ...
+20260305-02:40:16     total_loss: 5.8986 time: 0m 31s
+20260305-02:40:16 Test Epoch: 43 ...
+20260305-02:40:21     ave: 96.8667
+20260305-02:40:21 Saving checkpoint: 43
+20260305-02:40:21 Train Epoch: 44/70 ...
+20260305-02:40:52     total_loss: 5.9005 time: 0m 32s
+20260305-02:40:52 Test Epoch: 44 ...
+20260305-02:40:58     ave: 97.0000
+20260305-02:40:58 Saving checkpoint: 44
+20260305-02:40:58 Train Epoch: 45/70 ...
+20260305-02:41:29     total_loss: 5.9038 time: 0m 31s
+20260305-02:41:29 Test Epoch: 45 ...
+20260305-02:41:34     ave: 96.9167
+20260305-02:41:34 Saving checkpoint: 45
+20260305-02:41:34 Train Epoch: 46/70 ...
+20260305-02:42:05     total_loss: 5.9080 time: 0m 31s
+20260305-02:42:05 Test Epoch: 46 ...
+20260305-02:42:10     ave: 97.0000
+20260305-02:42:10 Saving checkpoint: 46
+20260305-02:42:10 Train Epoch: 47/70 ...
+20260305-02:42:42     total_loss: 5.9100 time: 0m 32s
+20260305-02:42:42 Test Epoch: 47 ...
+20260305-02:42:48     ave: 97.0000
+20260305-02:42:48 Saving checkpoint: 47
+20260305-02:42:48 Train Epoch: 48/70 ...
+20260305-02:43:19     total_loss: 5.9146 time: 0m 31s
+20260305-02:43:19 Test Epoch: 48 ...
+20260305-02:43:24     ave: 96.7333
+20260305-02:43:24 Saving checkpoint: 48
+20260305-02:43:24 Train Epoch: 49/70 ...
+20260305-02:43:56     total_loss: 5.9176 time: 0m 32s
+20260305-02:43:56 Test Epoch: 49 ...
+20260305-02:44:01     ave: 96.8833
+20260305-02:44:01 Saving checkpoint: 49
+20260305-02:44:01 Train Epoch: 50/70 ...
+20260305-02:44:33     total_loss: 5.9219 time: 0m 32s
+20260305-02:44:33 Test Epoch: 50 ...
+20260305-02:44:38     ave: 96.5833
+20260305-02:44:38 Saving checkpoint: 50
+20260305-02:44:38 Train Epoch: 51/70 ...
+20260305-02:45:10     total_loss: 5.9255 time: 0m 31s
+20260305-02:45:10 Test Epoch: 51 ...
+20260305-02:45:15     ave: 96.9333
+20260305-02:45:15 Saving checkpoint: 51
+20260305-02:45:15 Train Epoch: 52/70 ...
+20260305-02:45:46     total_loss: 5.9286 time: 0m 32s
+20260305-02:45:46 Test Epoch: 52 ...
+20260305-02:45:51     ave: 96.9667
+20260305-02:45:51 Saving checkpoint: 52
+20260305-02:45:51 Train Epoch: 53/70 ...
+20260305-02:46:22     total_loss: 5.7613 time: 0m 31s
+20260305-02:46:22 Test Epoch: 53 ...
+20260305-02:46:28     ave: 96.9167
+20260305-02:46:28 Saving checkpoint: 53
+20260305-02:46:28 Train Epoch: 54/70 ...
+20260305-02:47:00     total_loss: 5.7502 time: 0m 32s
+20260305-02:47:00 Test Epoch: 54 ...
+20260305-02:47:05     ave: 96.7667
+20260305-02:47:05 Saving checkpoint: 54
+20260305-02:47:05 Train Epoch: 55/70 ...
+20260305-02:47:36     total_loss: 5.7466 time: 0m 32s
+20260305-02:47:36 Test Epoch: 55 ...
+20260305-02:47:41     ave: 96.9167
+20260305-02:47:41 Saving checkpoint: 55
+20260305-02:47:41 Train Epoch: 56/70 ...
+20260305-02:48:13     total_loss: 5.7433 time: 0m 32s
+20260305-02:48:13 Test Epoch: 56 ...
+20260305-02:48:19     ave: 96.8833
+20260305-02:48:19 Saving checkpoint: 56
+20260305-02:48:19 Train Epoch: 57/70 ...
+20260305-02:48:50     total_loss: 5.7417 time: 0m 32s
+20260305-02:48:50 Test Epoch: 57 ...
+20260305-02:48:55     ave: 96.9667
+20260305-02:48:55 Saving checkpoint: 57
+20260305-02:48:55 Train Epoch: 58/70 ...
+20260305-02:49:27     total_loss: 5.7411 time: 0m 31s
+20260305-02:49:27 Test Epoch: 58 ...
+20260305-02:49:32     ave: 96.9500
+20260305-02:49:32 Saving checkpoint: 58
+20260305-02:49:32 Train Epoch: 59/70 ...
+20260305-02:50:03     total_loss: 5.7181 time: 0m 32s
+20260305-02:50:03 Test Epoch: 59 ...
+20260305-02:50:08     ave: 97.0667
+20260305-02:50:08 Saving checkpoint: 59
+20260305-02:50:08 Train Epoch: 60/70 ...
+20260305-02:50:40     total_loss: 5.7165 time: 0m 31s
+20260305-02:50:40 Test Epoch: 60 ...
+20260305-02:50:45     ave: 96.8667
+20260305-02:50:45 Saving checkpoint: 60
+20260305-02:50:45 Train Epoch: 61/70 ...
+20260305-02:51:15     total_loss: 5.7168 time: 0m 31s
+20260305-02:51:15 Test Epoch: 61 ...
+20260305-02:51:20     ave: 96.8167
+20260305-02:51:20 Saving checkpoint: 61
+20260305-02:51:20 Train Epoch: 62/70 ...
+20260305-02:51:50     total_loss: 5.7169 time: 0m 30s
+20260305-02:51:50 Test Epoch: 62 ...
+20260305-02:51:55     ave: 96.8667
+20260305-02:51:55 Saving checkpoint: 62
+20260305-02:51:55 Train Epoch: 63/70 ...
+20260305-02:52:26     total_loss: 5.7163 time: 0m 31s
+20260305-02:52:26 Test Epoch: 63 ...
+20260305-02:52:31     ave: 97.0000
+20260305-02:52:31 Saving checkpoint: 63
+20260305-02:52:31 Train Epoch: 64/70 ...
+20260305-02:53:02     total_loss: 5.7166 time: 0m 31s
+20260305-02:53:02 Test Epoch: 64 ...
+20260305-02:53:07     ave: 96.8667
+20260305-02:53:07 Saving checkpoint: 64
+20260305-02:53:07 Train Epoch: 65/70 ...
+20260305-02:53:38     total_loss: 5.7167 time: 0m 31s
+20260305-02:53:38 Test Epoch: 65 ...
+20260305-02:53:43     ave: 96.9333
+20260305-02:53:43 Saving checkpoint: 65
+20260305-02:53:43 Train Epoch: 66/70 ...
+20260305-02:54:13     total_loss: 5.7164 time: 0m 30s
+20260305-02:54:13 Test Epoch: 66 ...
+20260305-02:54:18     ave: 96.9333
+20260305-02:54:18 Saving checkpoint: 66
+20260305-02:54:18 Train Epoch: 67/70 ...
+20260305-02:54:48     total_loss: 5.7155 time: 0m 30s
+20260305-02:54:48 Test Epoch: 67 ...
+20260305-02:54:53     ave: 96.8833
+20260305-02:54:53 Saving checkpoint: 67
+20260305-02:54:53 Train Epoch: 68/70 ...
+20260305-02:55:23     total_loss: 5.7149 time: 0m 30s
+20260305-02:55:23 Test Epoch: 68 ...
+20260305-02:55:28     ave: 96.8500
+20260305-02:55:28 Saving checkpoint: 68
+20260305-02:55:28 Train Epoch: 69/70 ...
+20260305-02:55:58     total_loss: 5.7165 time: 0m 30s
+20260305-02:55:58 Test Epoch: 69 ...
+20260305-02:56:03     ave: 96.8500
+20260305-02:56:03 Saving checkpoint: 69
+20260305-02:56:03 Train Epoch: 70/70 ...
+20260305-02:56:33     total_loss: 5.7151 time: 0m 30s
+20260305-02:56:33 Test Epoch: 70 ...
+20260305-02:56:38     ave: 96.9333
+20260305-02:56:38 Saving checkpoint: 70

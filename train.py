@@ -57,7 +57,7 @@ if __name__ == '__main__':
     model_module = importlib.import_module(f'core.{MODEL_FILE}')
     if MODEL_SIZE == 'micro':
         net = model_module.MobileFacenet(model_module.Mobilefacenet_micro_setting,
-                                         inplanes=32, mid_channels=64, embedding_size=64, use_se=True)
+                                         inplanes=32, mid_channels=96, embedding_size=64, use_se=True)
         embedding_size = 64
     elif MODEL_SIZE == 'tiny':
         net = model_module.MobileFacenet()
@@ -68,7 +68,10 @@ if __name__ == '__main__':
     else:  # 'original'
         net = model_module.MobileFacenet(model_module.Mobilefacenet_bottleneck_setting, inplanes=64, mid_channels=512)
         embedding_size = 128
-    ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums)
+    if MODEL_SIZE == 'micro':
+        ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums, s=16.0, m=0.35)
+    else:
+        ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums)
 
     if RESUME:
         ckpt = torch.load(RESUME)
