@@ -55,13 +55,19 @@ if __name__ == '__main__':
 
     # define model
     model_module = importlib.import_module(f'core.{MODEL_FILE}')
-    if MODEL_SIZE == 'tiny':
+    if MODEL_SIZE == 'micro':
+        net = model_module.MobileFacenet(model_module.Mobilefacenet_micro_setting,
+                                         inplanes=32, mid_channels=64, embedding_size=64, use_se=True)
+        embedding_size = 64
+    elif MODEL_SIZE == 'tiny':
         net = model_module.MobileFacenet()
+        embedding_size = 128
     elif MODEL_SIZE == 'small':
         net = model_module.MobileFacenet(model_module.Mobilefacenet_small_setting, inplanes=32, mid_channels=256)
+        embedding_size = 128
     else:  # 'original'
         net = model_module.MobileFacenet(model_module.Mobilefacenet_bottleneck_setting, inplanes=64, mid_channels=512)
-    embedding_size = 64
+        embedding_size = 128
     ArcMargin = model_module.ArcMarginProduct(embedding_size, trainset.class_nums)
 
     if RESUME:
